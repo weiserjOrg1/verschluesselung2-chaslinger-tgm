@@ -21,12 +21,8 @@ public class MonoAlphabeticCipher implements Cipher{
 	 * 
 	 * @param secretAlphabet 
 	 */
-	protected void setSecretAlphabet(String secretAlphabet) {
-		try {
-			this.secretAlphabet = testSecretAlphabet(secretAlphabet);
-		}catch(AlphaExceptions e) {
-			System.out.println(e.toString());
-		}
+	protected void setSecretAlphabet(String secretAlphabet) throws AlphaException{
+		this.secretAlphabet = testSecretAlphabet(secretAlphabet);
 	}
 	/** This method encrypts the text
 	 * @param text String which should be encrypted
@@ -70,13 +66,13 @@ public class MonoAlphabeticCipher implements Cipher{
 	 * @return the secret alphabet
 	 * @throws AlphaExceptions exceptions for invalid secret alphabets
 	 */
-	public String testSecretAlphabet(String secretAlphabet) throws AlphaExceptions {
+	public String testSecretAlphabet(String secretAlphabet) throws AlphaException {
 		secretAlphabet = secretAlphabet.toLowerCase();
 		//30 characters
 		if(secretAlphabet.length() == 30) {
 			
 		}else {
-			throw new AlphaExceptions("The alphabet is too short/long");
+			throw new AlphaException("The alphabet is too short/long");
 		}
 		//every character only once
 		for(int i = 0; i < secretAlphabet.length(); i++) {
@@ -84,7 +80,7 @@ public class MonoAlphabeticCipher implements Cipher{
 			if(secretAlphabet.indexOf(letter) == secretAlphabet.lastIndexOf(letter)) {
 				
 			}else {
-				throw new AlphaExceptions("One letter must be only once in the secret alphabet");
+				throw new AlphaException("One letter must be only once in the secret alphabet");
 			}
 		}
 		//no special characters
@@ -93,7 +89,7 @@ public class MonoAlphabeticCipher implements Cipher{
 			if((letter > 'a'-1 && letter < 'z'+1) || letter == 'ä' || letter == 'ö' || letter == 'ü' || letter=='ß') {
 				
 			}else {
-				throw new AlphaExceptions("The alphabet must not contain any special characters");
+				throw new AlphaException("The alphabet must not contain any special characters");
 			}
 		}
 		
