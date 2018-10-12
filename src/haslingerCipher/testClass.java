@@ -29,5 +29,7 @@ public class testClass {
 		}catch(AlphaException e) {
 			System.out.println(e.toString());
 		}
+		
+		CiController c1 = new CiController();
 	}
 }
