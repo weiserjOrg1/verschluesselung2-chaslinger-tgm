@@ -1,11 +1,13 @@
 package haslingerCipher;
-
+/** This class handles the Cipher classes and other variables
+ *  @author chris
+ *  @version 20-10-2018
+ */
 public class CiModel {
 	private String outText;
 	private SubstitutionCipher s1;
 	private ShiftCipher c1;
 	private int number;
-	private String errorMessage;
 	
 	public CiModel() {
 		this.number = 1;
@@ -17,24 +19,14 @@ public class CiModel {
 			
 		}
 	}
-	public void setSubCipher(String alphabet) {
-		try {
-			this.s1.setSecretAlphabet(alphabet);
-			this.errorMessage = "";
-		}catch (AlphaException e) {
-			this.errorMessage = e.toString();
-		}
+	public void setSubCipher(String alphabet) throws AlphaException{
+		this.s1.setSecretAlphabet(alphabet);
 	}
 	public void setShiftCipher(int value) {
 		try {
 			this.c1.setShiftValue(value);
-			this.errorMessage = "";
 		}catch (AlphaException e) {
-			this.errorMessage = e.toString();
 		}
-	}
-	public String getErrorMessage() {
-		return this.errorMessage;
 	}
 	public void setEncryptedText(String text) {
 		switch(this.number) {

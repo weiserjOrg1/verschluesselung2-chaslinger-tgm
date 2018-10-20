@@ -1,4 +1,8 @@
 package haslingerCipher;
+/** This class writes the decrypted/encrypted text
+ *  @author chris
+ *  @version 20-10-2018
+ */
 import java.awt.*;
 import javax.swing.*;
 public class CiPanel extends JPanel {

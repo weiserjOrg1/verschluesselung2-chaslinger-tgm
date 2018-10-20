@@ -1,4 +1,8 @@
 package haslingerCipher;
+/** This class handles the JFrame
+ *  @author chris
+ *  @version 20-10-2018
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -13,6 +17,7 @@ public class CiView extends JFrame{
 	private JPanel south, north, radio;
 	private JLabel iT, iV, iA;
 	private Container co1, co2, co3;
+	private ButtonGroup rbg;
 	
 	public CiView(CiController c, CiModel m) {
 		this.m1 = m;
@@ -31,12 +36,15 @@ public class CiView extends JFrame{
 		this.north = new JPanel();
 		this.radio = new JPanel();
 		this.iT = new JLabel("Message: ");
-		this.iV = new JLabel("Value: ");
+		this.iV = new JLabel("Shift value: ");
 		this.iA = new JLabel("secretAlphabet: ");
 		this.co1 = new Container();
 		this.co2 = new Container();
 		this.co3 = new Container();
+		this.rbg = new ButtonGroup();
 		
+		this.rbg.add(this.shift);
+		this.rbg.add(this.subst);
 		
 		this.enc.addActionListener(this.c1);
 		this.dec.addActionListener(this.c1);
@@ -74,19 +82,34 @@ public class CiView extends JFrame{
 		this.add(this.south, BorderLayout.SOUTH);
 		this.add(this.enc, BorderLayout.WEST);
 		this.add(this.dec, BorderLayout.EAST);
-		
-		
-		if(this.m1.getNumber() == 1) {
-			this.co2.setVisible(false);
-			this.co3.setVisible(true);
-		}else {
-			this.co2.setVisible(true);
-			this.co3.setVisible(false);
-		}
-		
 		this.setVisible(true);
 	}
 	public void refresh() {
 		this.p1.repaint();
+	}
+	public boolean isEncPressed(ActionEvent e) {
+		if(e.getSource()==this.enc) return true;
+		return false;
+	}
+	public boolean isDecPressed(ActionEvent e) {
+		if(e.getSource()==this.dec) return true;
+		return false;
+	}
+	public boolean isShiftChecked() {
+		if(this.shift.isSelected()) return true;
+		return false;
+	}
+	public boolean isSubstChecked() {
+		if(this.subst.isSelected()) return true;
+		return false;
+	}
+	public String getValue() {
+		return this.value.getText();
+	}
+	public String getSecretAlphabet() {
+		return this.secretAlphabet.getText();
+	}
+	public String getText() {
+		return this.text.getText();
 	}
 }
